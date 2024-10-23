@@ -1,0 +1,296 @@
+<html><head><base href="https://filipinogenerator.com/">
+<meta charset="UTF-8">
+<title>Filipino Name Generator</title>
+<style>
+:root {
+  --primary: #ce1126;
+  --secondary: #0038a8;
+  --accent: #fcd116;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to bottom,
+    var(--primary) 0%,
+    var(--primary) 50%,
+    var(--secondary) 50%,
+    var(--secondary) 100%
+  );
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 2px solid var(--accent);
+}
+
+.sun-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 0 10px rgba(252, 209, 22, 0.5));
+}
+
+h1 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button {
+  background: var(--accent);
+  color: var(--secondary);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(252, 209, 22, 0.3);
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: var(--white);
+}
+
+.name-display {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  min-height: 60px;
+  color: var(--accent);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  position: relative;
+  opacity: 0;
+}
+
+/* New reveal animations */
+@keyframes revealName {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(-20px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent);
+  }
+  100% {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.name-reveal {
+  animation: revealName 0.8s ease-out forwards,
+             glowPulse 2s ease-in-out infinite;
+}
+
+.meaning, .trivia {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  min-height: 40px;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+.meaning.show, .trivia.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.trivia {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 1px solid var(--accent);
+  transition-delay: 0.2s;
+}
+
+.trivia-icon {
+  color: var(--accent);
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.region {
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1rem;
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+  transition-delay: 0.1s;
+}
+
+.region.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes sunRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loading {
+  animation: sunRotate 2s linear infinite;
+}
+
+/* Letter animation */
+@keyframes letterFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.floating-letter {
+  display: inline-block;
+  animation: letterFloat 0.5s ease-in-out;
+  animation-fill-mode: both;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <svg class="sun-logo" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="20" fill="#fcd116"/>
+    <g id="rays">
+      <line x1="50" y1="20" x2="50" y2="10" stroke="#fcd116" stroke-width="4"/>
+      <line x1="50" y1="80" x2="50" y2="90" stroke="#fcd116" stroke-width="4"/>
+      <line x1="20" y1="50" x2="10" y2="50" stroke="#fcd116" stroke-width="4"/>
+      <line x1="80" y1="50" x2="90" y2="50" stroke="#fcd116" stroke-width="4"/>
+      <line x1="30" y1="30" x2="20" y2="20" stroke="#fcd116" stroke-width="4"/>
+      <line x1="70" y1="70" x2="80" y2="80" stroke="#fcd116" stroke-width="4"/>
+      <line x1="30" y1="70" x2="20" y2="80" stroke="#fcd116" stroke-width="4"/>
+      <line x1="70" y1="30" x2="80" y2="20" stroke="#fcd116" stroke-width="4"/>
+    </g>
+  </svg>
+  
+  <h1>Filipino Name Generator</h1>
+  <button onclick="generateName('male')">Generate Male Name</button>
+  <button onclick="generateName('female')">Generate Female Name</button>
+  
+  <div class="name-display" id="nameDisplay"></div>
+  <div class="meaning" id="meaningDisplay"></div>
+  <div class="region" id="regionDisplay"></div>
+  <div class="trivia" id="triviaDisplay">
+    <span class="trivia-icon">💡</span>
+    <span id="triviaText"></span>
+  </div>
+</div>
+
+<script>
+const maleNames = {
+  'Agapito': ['Beloved', 'Tagalog', 'This name was particularly popular during the Spanish colonial period and is often associated with strength and resilience.'],
+  'Bayani': ['Hero', 'Tagalog', 'This name gained significance during the Philippine Revolution, embodying the spirit of Filipino nationalism.'],
+  'Crisanto': ['Golden Christ', 'Visayan', 'Traditional name often given to boys born during the Christmas season in Visayan regions.'],
+  'Dakila': ['Great, Noble', 'Tagalog', 'This name was borne by several pre-colonial Filipino chieftains and continues to represent leadership.'],
+  'Efren': ['Fruitful', 'Ilocano', 'A name that gained popularity in the 1960s, often associated with successful farmers and businessmen.'],
+  'Isagani': ['Witness', 'Tagalog', 'This name was popularized by Jose Rizal in his novel "El Filibusterismo" through the character Isagani.'],
+  'Makisig': ['Handsome, Gallant', 'Tagalog', 'In Filipino mythology, makisig warriors were known for both their looks and bravery in battle.'],
+  'Ninoy': ['Child, Young', 'Tagalog', 'Made famous by Senator Benigno "Ninoy" Aquino Jr., a prominent figure in Philippine democracy.'],
+  'Rogelio': ['Famous', 'Cebuano', 'A name that blends Spanish and Filipino heritage, common in artistic and creative families.'],
+  'Virgilio': ['Staff Bearer', 'Bicolano', 'Often given to children born under the Virgo zodiac sign in Bicol region.']
+};
+
+const femaleNames = {
+  'Amihan': ['North Wind', 'Visayan', 'In Philippine mythology, Amihan was a primordial bird deity who helped create the first humans.'],
+  'Bituin': ['Star', 'Tagalog', 'Traditional performers in Filipino folk dances often took this name as their stage name.'],
+  'Cordelia': ['Daughter of the Sea', 'Ilocano', 'Popular in coastal regions, especially among fishing communities in Northern Luzon.'],
+  'Diwata': ['Fairy, Spirit', 'Tagalog', 'In pre-colonial Philippines, diwatas were believed to be guardian spirits of nature.'],
+  'Esperanza': ['Hope', 'Spanish-Filipino', 'Traditionally given to girls born during difficult times as a symbol of optimism.'],
+  'Ligaya': ['Happiness', 'Tagalog', 'Often given to children born during festivals or celebration periods.'],
+  'Mayumi': ['Gentle, Modest', 'Tagalog', 'This name embodies traditional Filipino values of feminine grace and modesty.'],
+  'Ningning': ['Brightness, Sparkle', 'Tagalog', 'Popular during the 1980s Filipino cinema era, associated with glamour and artistry.'],
+  'Reyna': ['Queen', 'Spanish-Filipino', 'Historically given to daughters of prominent families, especially during the Spanish era.'],
+  'Tala': ['Star', 'Tagalog', 'In ancient Filipino astronomy, Tala was considered the morning star that guided farmers and sailors.']
+};
+
+function animateName(name) {
+  const nameDisplay = document.getElementById('nameDisplay');
+  nameDisplay.innerHTML = '';
+  nameDisplay.style.opacity = '1';
+  nameDisplay.classList.add('name-reveal');
+  
+  [...name].forEach((letter, index) => {
+    const span = document.createElement('span');
+    span.textContent = letter;
+    span.className = 'floating-letter';
+    span.style.animationDelay = `${index * 0.1}s`;
+    nameDisplay.appendChild(span);
+  });
+}
+
+function generateName(gender) {
+  const nameSet = gender === 'male' ? maleNames : femaleNames;
+  const names = Object.keys(nameSet);
+  const randomName = names[Math.floor(Math.random() * names.length)];
+  
+  // Reset animations
+  document.getElementById('nameDisplay').classList.remove('name-reveal');
+  document.getElementById('meaningDisplay').classList.remove('show');
+  document.getElementById('regionDisplay').classList.remove('show');
+  document.getElementById('triviaDisplay').classList.remove('show');
+  
+  // Trigger animations
+  setTimeout(() => {
+    animateName(randomName);
+    
+    document.getElementById('meaningDisplay').textContent = `Meaning: ${nameSet[randomName][0]}`;
+    document.getElementById('regionDisplay').textContent = `Origin: ${nameSet[randomName][1]}`;
+    document.getElementById('triviaText').textContent = nameSet[randomName][2];
+    
+    document.getElementById('meaningDisplay').classList.add('show');
+    document.getElementById('regionDisplay').classList.add('show');
+    document.getElementById('triviaDisplay').classList.add('show');
+  }, 100);
+  
+  // Add loading animation to sun
+  const sunLogo = document.querySelector('.sun-logo');
+  sunLogo.classList.add('loading');
+  setTimeout(() => sunLogo.classList.remove('loading'), 1000);
+}
+
+// Generate a random name on page load
+window.onload = () => generateName(Math.random() < 0.5 ? 'male' : 'female');
+</script>
+</body>
+</html>
